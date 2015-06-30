@@ -1,0 +1,20 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>pc
+<% end %>
+
+<h1>Your pragmatic Catalog</h1>
+<% cache ['store', Product.lastest ] do %>
+
+  <% @products.each do |product| %>
+  <% cache ['entry', Product ] do %>
+    <div class="entry">
+      <%= image_tag(product.image_url) %>
+      <h3><%= product.title %></h3>
+      <%= sanitize(product.description) %>
+      <div class="price_line">
+        <span class="price"><%= number_to_currency(product.price) %></span>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<% end %>
